@@ -1,14 +1,15 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const { MONGO_SERVER_URL } = require('./serverConfig');
+import { MONGO_SERVER_URL } from './serverConfig.js'
 
 const connect =  async () => {
     try {
         await mongoose.connect(MONGO_SERVER_URL);
+        mongoose.set('autoIndex', false)
         console.log('mogoose server connected');
     } catch (error) {
         console.log('failed to connect to mongoose',error);
     }
 }
 
-module.exports = connect ;
+export default connect ;

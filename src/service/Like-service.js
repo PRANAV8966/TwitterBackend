@@ -1,0 +1,2 @@
+import LikeRepository  from "../repository";
+

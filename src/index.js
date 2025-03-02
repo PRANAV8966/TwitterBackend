@@ -1,11 +1,10 @@
-const express = require('express');
+import express from 'express';
 const app = express();
 
-const { PORT } = require('./config/serverConfig.js');
+import { PORT } from './config/serverConfig.js';
 
-const connect = require('./config/database-config.js');
-
-const tweetController  = require('./controller/tweetController.js');
+import connect from './config/database-config.js';
+import tweetController from './controller/tweetController.js';
 
 const startServer = async () => {
 
@@ -15,6 +14,7 @@ const startServer = async () => {
         console.log(`server started on PORT: ${PORT}` );
     })
     await connect();
+    
 
     app.post('/api/v1/tweet', tweetController.createTweet);
     app.get('/api/v1/tweet', tweetController.getTweets);

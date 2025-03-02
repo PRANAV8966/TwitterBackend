@@ -1,7 +1,7 @@
-const TweetService = require('../service/tweet-service');
+import TweetService from '../service/tweet-service.js'
 const tweetService = new TweetService();
 
-const { StatusCodes } = require('http-status-codes');
+import { StatusCodes } from 'http-status-codes';
 
 const createTweet = async (req, res) => {
     try {
@@ -80,7 +80,7 @@ const tweetPagination = async (req, res) => {
     }
 }
 
-module.exports = {
+export default {
     createTweet,
     getTweets,
     getTweet,

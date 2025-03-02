@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const Tweet = require('./twitter-model');
+import mongoose from 'mongoose';
 
 const hashtagSchema = new mongoose.Schema({
     title: {
@@ -13,8 +12,7 @@ const hashtagSchema = new mongoose.Schema({
         }
     ],
 
-
 }, {timestamp:true});
 
-const HashTag = mongoose.model('Tweet', tweetSchema);
-module.exports =  HashTag;
+const HashTag = mongoose.model('HashTag', hashtagSchema);
+export default HashTag;
