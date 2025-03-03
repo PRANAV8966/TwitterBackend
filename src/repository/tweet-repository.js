@@ -8,7 +8,6 @@ class TweetRepository {
             const tweet = await Tweet.create(data);
             return tweet;
         } catch (error) {
-            console.log('at repo', error);
             throw error;
         }
     }
@@ -21,10 +20,9 @@ class TweetRepository {
             throw error;
         }
     }
-
-    async getTweet(filterData) {
+    async getTweet(id) {
         try {
-            const tweet = await Tweet.findById(filterData);
+            const tweet = await Tweet.findById(id);
             return tweet;
         } catch (error) {
             throw error;

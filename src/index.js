@@ -14,7 +14,6 @@ const startServer = async () => {
         console.log(`server started on PORT: ${PORT}` );
     })
     await connect();
-    
 
     app.post('/api/v1/tweet', tweetController.createTweet);
     app.get('/api/v1/tweet', tweetController.getTweets);

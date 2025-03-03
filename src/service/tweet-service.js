@@ -83,9 +83,9 @@ class TweetService {
         }
     }
 
-    async getTweet(filterData) {
+    async getTweet(id) {
         try {
-            const tweet = await this.tweetRepository.getTweet(filterData);
+            const tweet = await this.tweetRepository.getTweet(id);
             return tweet;
         } catch (error) {
             throw error;
