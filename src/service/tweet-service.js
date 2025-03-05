@@ -92,6 +92,15 @@ class TweetService {
         }
     }
 
+    async getTweetsWithComments(tweetId) {
+        try {
+            const tweetWithComments = await this.tweetRepository.getTweetWithComment(tweetId);
+            return tweetWithComments;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async tweetPagination(filterData) {
         try {
             const pagedTweet = await this.tweetRepository.tweetPagination(filterData);

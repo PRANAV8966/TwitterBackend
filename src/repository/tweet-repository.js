@@ -14,17 +14,28 @@ class TweetRepository {
 
     async getTweets() {
         try {
-            const tweets = await Tweet.find();
+            const tweets = await Tweet.find().populate();
             return tweets;
         } catch (error) {
             throw error;
         }
     }
+
     async getTweet(id) {
         try {
-            const tweet = await Tweet.findById(id);
+            const tweet = await Tweet.findById(id).populate();
             return tweet;
         } catch (error) {
+            throw error;
+        }
+    }
+
+    async getTweetWithComment(TweetId) {
+        try {
+            const tweet = await Tweet.findById(TweetId.id).populate({path:'comments'});
+            return tweet;
+        } catch (error) {
+            console.log(error);
             throw error;
         }
     }

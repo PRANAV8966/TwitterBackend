@@ -1,5 +1,4 @@
 class CrudRepository {
-
     constructor(model) {
         this.model = model;
     }
@@ -9,7 +8,7 @@ class CrudRepository {
             const response = await this.model.create(data);
             return response;
         } catch (error) {
-            console.log('something went wrong in the curd repo');
+            console.log('something went wrong in the curd repo', data);
             throw error;
         }
     }

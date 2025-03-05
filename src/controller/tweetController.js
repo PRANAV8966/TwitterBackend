@@ -80,9 +80,29 @@ const tweetPagination = async (req, res) => {
     }
 }
 
+const tweetWithComments = async (req, res) => {
+    try {
+        const tweet = await tweetService.getTweetsWithComments(req.body);
+        return res.status(StatusCodes.OK).json({
+            data:tweet,
+            success:true,
+            message:'successfully fetched tweets woth comments',
+            error:{}
+        });
+    } catch (error) {
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            data:{},
+            success:false,
+            message:'unable to fetch tweets woth comments',
+            error:error
+        });
+    }
+}
+
 export default {
     createTweet,
     getTweets,
     getTweet,
-    tweetPagination
+    tweetPagination,
+    tweetWithComments
 }
