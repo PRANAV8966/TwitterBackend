@@ -1,13 +1,9 @@
 import UserService from '../service/user-service.js'
 const userService = new UserService();
 
-
-
 import { StatusCodes } from 'http-status-codes';
 
-
-
-const createUser = async (req, res) => {
+const signUp = async (req, res) => {
     try {
         const user = await userService.createUser({
             userEmail:req.body.Email,
@@ -21,7 +17,6 @@ const createUser = async (req, res) => {
             error:{}
         });
     } catch (error) {
-        console.log(error);
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             data:{},
             success:false,
@@ -30,6 +25,28 @@ const createUser = async (req, res) => {
         });
     }
 }
+
+const signIn = async (req, res) => {
+    try {
+        const session = await userService.signIn(req.body.Email, req.body.Password);
+        return res.status(StatusCodes.OK).json({
+            data:session,
+            success:true,
+            message: 'successfully logged in',
+            error:{}
+        })
+
+    } catch (error) {
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            data:{},
+            success:false,
+            message:'something went wrong',
+            error:error
+        });
+    }
+}
+
 export default {
-    createUser
+    signUp,
+    signIn
 }
