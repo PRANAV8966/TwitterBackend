@@ -25,7 +25,6 @@ class TweetService {
             // const titleOfPresentTags = alreadyPresentTags.map(tag => tag.title);
             
             // let newTags = tags.filter(tag => !titleOfPresentTags.includes(tag));
-            // console.log(newTags);
             // newTags = newTags.map(tag => {
             //     return {title:tag, tweets: [tweet.id]};
             // });

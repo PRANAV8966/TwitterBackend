@@ -9,16 +9,14 @@ class CommentService {
     }
 
     async create(content, userId, modelType, modelId) {
-        console.log(content, userId, modelType, modelId);
         try {
             switch(modelType) {
                 case 'Tweet':
                 var commentedOn = await this.tweetRepository.getTweet(modelId);
-                console.log(commentedOn);
                 break;
 
                 case 'Comment':
-                var commentedOn = await this.commentRepository.get(modelId);
+                var commentedOn = await this.commentRepository.findComment(modelId);
                 break;
 
                 default:
@@ -31,9 +29,8 @@ class CommentService {
             commentedOn: modelId,
             comments:[]
         });
-
-            comment.comments.push(comment);
-            await comment.save();
+        commentedOn.comments.push(comment);
+        await commentedOn.save();
 
             return comment;
         } catch (error) {

@@ -23,7 +23,10 @@ const tweetSchema = new mongoose.Schema({
             type:mongoose.Schema.Types.ObjectId,           
             ref:'Like'
         }
-    ]
+    ],
+    image: {
+        type: String
+    }
 }, {timestamp:true});
 
 // tweetSchema.virtual('contentWithEmail').get(function get() {
