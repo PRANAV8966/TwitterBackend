@@ -1,19 +1,36 @@
 import TweetService from '../service/tweet-service.js'
 const tweetService = new TweetService();
 
+import upload from '../config/file-upload-awss3-config.js';
+
+const singleUploader = upload.array('images', 2);
+
 import { StatusCodes } from 'http-status-codes';
 
 const createTweet = async (req, res) => {
     try {
-        const tweet = await tweetService.createTweet(req.body);
-        return res.status(StatusCodes.OK).json({
-            data:tweet,
-            success:true,
-            message:'successfully created tweet',
-            error:{}
+        singleUploader(req, res, async function(err, data) {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({
+                    error:err
+                });
+            }
+
+            const imageUrls = req.files.map(file => file.location);
+            const payload = {...req.body,
+                imageUrl: imageUrls
+            };
+            const tweet = await tweetService.createTweet(payload);
+            return res.status(StatusCodes.OK).json({
+                data:tweet,
+                success:true,
+                message:'successfully created tweet',
+                error:{}
+            });     
         });
+        
     } catch (error) {
-        console.log('at controller', error);
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
             data:{},
             success:false,

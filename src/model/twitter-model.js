@@ -24,9 +24,11 @@ const tweetSchema = new mongoose.Schema({
             ref:'Like'
         }
     ],
-    image: {
-        type: String
-    }
+    imageUrl: [
+            {
+            type: String
+        }
+    ]
 }, {timestamp:true});
 
 // tweetSchema.virtual('contentWithEmail').get(function get() {

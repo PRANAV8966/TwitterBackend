@@ -5,7 +5,7 @@ class TweetRepository {
 
     async createTweet(data) {
         try {
-            const tweet = await Tweet.create(data);
+            const tweet = (await Tweet.create(data)).populate();
             return tweet;
         } catch (error) {
             throw error;

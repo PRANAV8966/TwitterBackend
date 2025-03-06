@@ -6,7 +6,7 @@ import tweetController from '../../controller/tweetController.js';
 import userController from '../../controller/user-controller.js';
 import { isAuthenticated } from '../../middleware/isAuthenticated.js';
 
-router.post('/tweet',isAuthenticated ,tweetController.createTweet);
+router.post('/tweet',tweetController.createTweet);
 
 router.get('/tweet', tweetController.tweetWithComments);
 router.get('/tweets', tweetController.tweetPagination);
