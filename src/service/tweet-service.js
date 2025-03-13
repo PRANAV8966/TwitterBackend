@@ -16,21 +16,15 @@ class TweetService {
             const PresentTags  = await this.GetAlreadyPresentTags(tags);
 
             const Newtags = await this.extractAndCreateNewTags(tags, PresentTags, tweet);
-
             return tweet;
 
-
             // let alreadyPresentTags = await this.hashTagRepository.getHashTags(tags);
-
             // const titleOfPresentTags = alreadyPresentTags.map(tag => tag.title);
-            
             // let newTags = tags.filter(tag => !titleOfPresentTags.includes(tag));
             // newTags = newTags.map(tag => {
             //     return {title:tag, tweets: [tweet.id]};
             // });
-
             // await this.hashTagRepository.bulkCreate(newTags);
-
             // alreadyPresentTags.forEach((tag) => {
             //     tag.tweets.push(tweet.id);
             //     tag.save();
